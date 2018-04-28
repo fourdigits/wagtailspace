@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600');
+
+$yellow: #ffda49;
+$white: #fff;
+$red: #d44348;
+$darkgray: #535764;
+$body-bg: #27292f;
+
+$font-family-sans-serif: 'Titillium Web', sans-serif;
+$font-family-base:       $font-family-sans-serif;
+
+$headings-font-weight:   600;
+
+@import "bootstrap";
+
+body {
+  background: $body-bg;
+  font-family: $font-family-sans-serif;
+  color: $white;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+.root {
+  overflow: hidden;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  &:before {
+    content: "";
+    background: transparent  url('../images/stars.svg') no-repeat 50% top;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5;
+    @include media-breakpoint-up(md) {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes bounce {
+  from, 20%, 53%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+@keyframes bounce {
+  from, 20%, 53%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -2px, 0);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -1px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.header {
+  height: 100vh;
+  display: flex;
+  position: relative;
+  &__inner {
+    max-width: 960px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .ufo--placeholder {
+      display: block;
+    }
+  }
+  &__center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__title {
+    color: $yellow;
+    margin: 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1;
+    font-size: 2rem;
+    padding-top: 10px;
+    text-align: center;
+    @include media-breakpoint-up(md) {
+      font-size: 4rem;
+      padding-top: 25px;
+      text-align: left;
+    }
+  }
+  &__subtitle {
+    font-weight: 400;
+    text-transform: uppercase;
+    padding-top: 10px;
+    margin-bottom: 40px;
+    font-size: 1.125rem;
+    @include media-breakpoint-up(md) {
+      font-size: 2rem;
+    }
+  }
+  .readmore {
+    &__button {
+      margin-top: 2.5rem;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      box-shadow: none;
+      font-size: 1.25rem;
+      text-align: center;
+      border: 0;
+      font-family: $font-family-sans-serif;
+      color: $white;
+      font-weight: 600;
+      cursor: pointer;
+      outline: 0;
+      transition: color 0.3s ease-in-out;
+      @include media-breakpoint-up(md) {
+        font-size: 1.875rem;
+      }
+      &:hover {
+        color: $yellow;
+        .readmore__icon {
+          animation: none;
+        }
+      }
+    }
+    &__icon {
+      width: 17px;
+      height: 12px;
+      animation: bounce 1.5s infinite;
+      animation-delay: 5s;
+    }
+  }
+}
+
+button.button,
+a.button {
+  background: $red;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 48px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  color: $white;
+  border-radius: 3px;
+  border: 0;
+  font-family: $font-family-sans-serif;
+  cursor: pointer;
+  &:hover {
+    background: darken($red, 2%);
+  }
+  &--cancel {
+    background: $white;
+    border: 1px solid $red;
+    color: $red;
+    &:hover {
+      text-decoration: underline;
+      background: inherit;
+    }
+  }
+}
+
+main {
+  @include media-breakpoint-up(md) {
+    padding-top: 4rem;
+  }
+}
+
+
+.footer {
+  background: transparent url('../images/footer-planet.svg') no-repeat 50% top;
+  background-size: cover;
+  min-height: 170px;
+  display: flex;
+  position: relative;
+  @include media-breakpoint-up(sm) {
+    min-height: 300px;
+  }
+  @include media-breakpoint-up(md) {
+    min-height: 500px;
+  }
+  @include media-breakpoint-up(lg) {
+    min-height: 600px;
+  }
+  &__inner {
+    margin: 0 auto;
+    max-width: 960px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+  }
+}
+
+.chapter {
+  max-width: 960px;
+  margin: 4rem auto 4rem;
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+  h2 {
+    font-size: 1.5rem;
+    color: $yellow;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0;
+    @include media-breakpoint-up(sm) {
+      font-size: 1.75rem;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 2.25rem;
+    }
+  }
+  h3 {
+    font-size: 1.25rem;
+    color: $white;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0;
+    @include media-breakpoint-up(sm) {
+      font-size: 1.375rem;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 1.875rem;
+    }
+  }
+  p, li, th, td {
+    font-size: 0.875rem;
+    font-weight: 300;
+    @include media-breakpoint-up(sm) {
+      font-size: 1rem;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 1.25rem;
+    }
+    &.intro {
+      font-weight: 600;
+      font-size: 1rem;
+      @include media-breakpoint-up(sm) {
+        font-size: 1.25rem;
+      }
+      @include media-breakpoint-up(md) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  a:not(.button) {
+    color: $yellow;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  table {
+    margin-bottom: 3rem;
+    width: 100%;
+    th {
+      font-weight: 600;
+    }
+    th, td {
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-left: 0;
+      padding-right: 10px;
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+  table.schedule {
+    .time {
+      padding-right: 1rem;
+      font-weight: 600;
+      width: 110px;
+      white-space: nowrap;
+      @include media-breakpoint-up(md) {
+        padding-right: 2.5rem;
+      }
+    }
+  }
+  table.attendees {
+    width: 100%;
+    margin-bottom: 0;
+    th {
+      font-weight: 600;
+      border-top: 0;
+      white-space: nowrap;
+      min-width: 100px;
+    }
+    td {
+      border-top: 1px solid $darkgray;
+      &.dates {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.planet {
+  position: absolute;
+  left: 50%;
+  top: 100vh;
+  &--earth {
+    width: 157px;
+    height: 157px;
+    top: 0;
+    transform: translate(653px, -57px);
+  }
+  &--rings {
+    width: 183px;
+    height: 119px;
+    transform: translate(700px, 45px);
+  }
+  &--red {
+    width: 1500px;
+    height: 1500px;
+    transform: translate(-2156px, -677px);
+    z-index: 2;
+  }
+  &--behindred {
+    width: 143px;
+    height: 143px;
+    transform: translate(-849px, 807px);
+    z-index: 1;
+  }
+  &--blue {
+    width: 804px;
+    height: 804px;
+    transform: translate(519px, 992px);
+    z-index: 2;
+  }
+  &--behindblue {
+    width: 272px;
+    height: 272px;
+    transform: translate(519px, 992px);
+    z-index: 1;
+  }
+  &--darkblue {
+    width: 734px;
+    height: 734px;
+    transform: translate(-1336px, 2358px);
+  }
+}
+
+.rocket {
+  width: 100px;
+  height: 182px;
+  position: absolute;
+  left: 50%;
+  top: 100vh;
+  transform: translate(-641px, 1337px);
+}
+
+.ufo {
+  width: 150px;
+  height: 104px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scale(0.1);
+  opacity: 0.01;
+  transition: all 2s ease-in-out;
+  z-index: 2;
+  will-change: transform;
+  @include media-breakpoint-up(md) {
+    width: 190px;
+    height: 132px;
+  }
+  &.lookleft img {
+    transform: scaleX(-1);
+
+  }
+  &--placeholder {
+    width: 150px;
+    height: 104px;
+    display: none;
+    @include media-breakpoint-up(md) {
+      width: 190px;
+      height: 132px;
+      display: block;
+    }
+  }
+}
+
+.ursa-major {
+  width: 172px;
+  height: 87px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.meteors {
+  width: 100px;
+  height: 67px;
+  transform: translate(80px, 25px);
+  @include media-breakpoint-up(md) {
+    width: 165px;
+    height: 111px;
+    transform: translate(80px, 25px);
+  }
+}
+
+.modal {
+  color: #535764;
+}
+
+.form-control {
+  font-family: $font-family-sans-serif;
+  &-label {
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+    <table>
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th colspan="4" style="text-align: center;">Dates</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+        </tr>
+        <tr>
+          <th>name</th>
+          <th>nickname</th>
+          <th>company</th>
+          <th>Di ({{ days.tuesday }})</th>
+          <th>Wo ({{ days.wednesday }})</th>
+          <th>Do ({{ days.thursday }})</th>
+          <th>Vr ({{ days.friday }})</th>
+          <th>sure</th>
+          <th>tshirt</th>
+          <th>food</th>
+          <th>email</th>
+          <th>comments</th>
+        <tr>
+      </thead>
+      <tbody>
+        {% for attendee in attendees %}
+          <tr>
+            <td>{{ attendee.name }}</td>
+            <td>{{ attendee.nickname }}</td>
+            <td>{{ attendee.company }}</td>
+            <td>{% if attendee.tuesday %}✅{% else %}❌{% endif %}</td>
+            <td>{% if attendee.wednesday %}✅{% else %}❌{% endif %}</td>
+            <td>{% if attendee.thursday %}✅{% else %}❌{% endif %}</td>
+            <td>{% if attendee.friday %}✅{% else %}❌{% endif %}</td>
+            <td>{{ attendee.sure }}</td>
+            <td>{{ attendee.tshirt }}</td>
+            <td>{{ attendee.food }}</td>
+            <td>{{ attendee.email }}</td>
+            <td>{{ attendee.comment }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <table>
+      <tr>
+        {% for size in sizes %}
+          <th>{{ size }}</th>
+        {% endfor %}
+      </tr>
+      <tr>
+        {% for count in sizes.values %}
+          <td>{{ count }}</td>
+        {% endfor %}
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        {% for choice in food %}
+          <th>{{ choice }}</th>
+        {% endfor %}
+      </tr>
+      <tr>
+        {% for count in food.values %}
+          <td>{{ count }}</td>
+        {% endfor %}
+      </tr>
+    </table>
+
+    <div>{{ emails }}</div>
+
+
+{% endblock %}

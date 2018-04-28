@@ -1,0 +1,12 @@
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'wagtailspace',
+        'CONN_MAX_AGE': 600,
+        'USER': '',
+        'HOST': 'localhost',
+        'PASSWORD': '',
+    }
+}
+
+SECRET_KEY = 'CHANGE ME!!!'

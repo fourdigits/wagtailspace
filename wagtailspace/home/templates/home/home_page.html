@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags %}
+{% load render_bundle webpack_static from webpack_loader %}
+{% block content %}
+<div class="ufo"><img src="{% webpack_static  'images/wagtail-ufo.svg' %}" alt="UFO" /></div>
+<img src="{% webpack_static 'images/planet1.svg' %}" class="planet planet--earth" />
+<img src="{% webpack_static 'images/planet2.svg' %}" class="planet planet--rings" />
+<img src="{% webpack_static 'images/planet3.svg' %}" class="planet planet--red" />
+<img src="{% webpack_static 'images/planet4.svg' %}" class="planet planet--behindred" />
+<img src="{% webpack_static 'images/rocket.svg' %}" class="rocket" />
+<img src="{% webpack_static 'images/planet5.svg' %}" class="planet planet--blue" />
+<img src="{% webpack_static 'images/planet6.svg' %}" class="planet planet--darkblue" />
+<header class="header">
+    <div class="header__inner">
+        <div class="header__center">
+            <div class="ufo--placeholder"></div>
+            <h1 class="header__title">{{ self.title }}</h1>
+            <span class="header__subtitle">{{ self.subtitle }}</span>
+            <button class="button signup" data-url="{% url 'signup' %}">Sign up!</button>
+            <button class="readmore__button">
+                Read more
+                <svg class="readmore__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 11"><g fill="none" fill-rule="evenodd"><g fill="#FFF" fill-rule="nonzero"><g><path d="M16.8 2.923l-7.825 7.875c-.134.135-.292.202-.475.202s-.34-.067-.475-.202L.2 2.923C.067 2.788 0 2.627 0 2.44c0-.19.067-.35.2-.484L1.95.202C2.086.067 2.244 0 2.427 0c.182 0 .34.067.474.202l5.6 5.643L14.1.202c.133-.135.292-.202.474-.202.183 0 .34.067.475.202l1.75 1.754c.133.134.2.295.2.483 0 .187-.067.348-.2.483z"/></g></g></g></svg>
+            </button>
+        </div>
+        <div class="header__readmore">
+
+        </div>
+    </div>
+</header>
+<main>
+    <section class="chapter">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <p class="intro">
+                    {{ self.intro_intro }}
+                </p>
+                {{ self.intro_content|richtext }}
+            </div>
+    </section>
+
+    <section class="chapter">
+        <div class="ufo--placeholder" style="position: absolute; right: 0; top: -80px;"></div>
+        <h2>{{ self.talks_sprint_title }}</h2>
+        <div class="row">
+            <div class="col-md-6">
+                {{ self.talks_content|richtext }}
+            </div>
+            <div class="col-md-6">
+                {{ self.sprint_content|richtext }}
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter">
+        <h2>{{ self.schedule_title }}</h2>
+        {% if self.schedule_content %}
+            <div class="row">
+                <div class="col-md-10">
+                    {{ self.schedule_content|richtext }}
+                </div>
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-6">
+                {% for day in dates %}
+                    <h3>{{ day }}</h3>
+                    <table class="schedule">
+                        {% for slot in day.timeslots.all %}
+                            <tr>
+                                <th class="time">
+                                {{ slot.start_time|time:"H:i" }}
+                                {% if slot.end_time %}
+                                - {{ slot.end_time|time:"H:i" }}
+                                {% endif %}
+                                </th>
+                                <td>{{ slot.description }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endfor %}
+            </div>
+            <div class="col-md-6 decoration">
+                <div class="ufo--placeholder" style="position: absolute; top: 200px; left: 10px"></div>
+                <img src="{% webpack_static 'images/ursa-major.svg' %}" class="ursa-major" />
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter">
+        <h2>{{ self.location_facilities_title }}</h2>
+        <div class="row">
+            <div class="col-md-6">
+                {{ self.location_content|richtext }}
+            </div>
+
+            <div class="col-md-6">
+                {{ self.facilities_content|richtext }}
+                <div class="ufo--placeholder" style="position: absolute; top: 100%; left: 90px"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter">
+        <h2>{{ self.travel_hotels_title }}</h2>
+        <div class="row">
+            <div class="col-md-6">
+                {{ self.hotels_content|richtext }}
+            </div>
+            <div class="col-md-6">
+                {{ self.travel_content|richtext }}
+                <img src="{% webpack_static 'images/meteors.svg' %}" class="meteors" />
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter">
+        <div class="row">
+            <div class="col-md-10">
+                <h2>{{ self.signup_title }}</h2>
+                {{ self.signup_content|richtext }}
+                <p>
+                    <a href="#" class="button signup" data-url="{% url 'signup' %}">{{ self.signup_button_title }}</a>
+                </p>
+    </section>
+
+    <section class="chapter">
+        <h2>{{ self.attendees_title }}</h2>
+        {% if self.attendees_content %}
+            <div class="row">
+                <div class="col-md-10">
+                    {{ self.attendees_content|richtext }}
+                </div>
+            </div>
+        {% endif %}
+        <div class="table-responsive">
+        <table class="attendees table">
+            <tr>
+                <th>Name</th>
+                <th>Github nickname</th>
+                <th>Company</th>
+                <th>Dates</th>
+            </tr>
+            {% for attendee in attendees %}
+                <tr>
+                    <td>{{ attendee.full_name }}</td>
+                    <td>{{ attendee.github_nickname }}</td>
+                    <td>{{ attendee.company }}</td>
+                    <td class="dates">
+                        {% for item in attendee.dates.all %}
+                            {{ item.date|date:"jS" }}{% if not forloop.last %}, {% endif %}
+                            {% if forloop.last %}{{ item.date|date:"F" }}{% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        </div>
+    </section>
+
+    <section class="chapter">
+        <h2>{{ self.sponsors_title }}</h2>
+        <div class="row">
+            <div class="col-md-10">
+                {{ self.sponsors_content|richtext }}
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter">
+        <h2>{{ self.house_rules_title }}</h2>
+        <div class="row">
+            <div class="col-md-10">
+                {{ self.house_rules_content|richtext }}
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="footer">
+    <div class="footer__inner">
+        <div class="fourdigits-flag">
+
+        </div>
+        <div class="ufo--placeholder" style="position: absolute; top: 50px; left: 100px;"></div>
+    </div>
+</footer>
+
+<div class="modal fade" id="registration" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+              Loading...
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

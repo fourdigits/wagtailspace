@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    <div id="logo">
+    {% if page.main_image %}
+        <a href="/">{% image page.main_image width-386 %}</a>
+    {% endif %}
+    </div>
+    <div class="gray">
+      <div class="container">
+        <div class="col-md-12">
+        {{ self.thank_you_text|richtext }}
+        </div>
+      </div>
+    </div>
+{% endblock %}

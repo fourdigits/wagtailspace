@@ -1,0 +1,10 @@
+<div class="{{ self.color }}">
+  <div class="container">
+    <div class="col-md-12">
+      {% if self.title %}<h1>{{ self.title }}</h1>{% endif %}
+    </div>
+    <div class="col-md-12">
+         {% include "home/sf_blocks.html" with blocks=self.one_column only %}
+    </div>
+  </div>
+</div>

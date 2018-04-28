@@ -1,0 +1,17 @@
+{% load wagtailcore_tags %}
+
+<h2>{{ self.date|date:'l F jS'}}
+<table>
+  <thead>
+    <tr>
+      <th style="width: 120px;">Time</th>
+      <th>Activity</th>
+      <th>Notes</th>
+    <tr>
+  </thead>
+  <tbody>
+    {% for block in self.program %}
+      {% include_block block %}
+    {% endfor %}
+  </tbody>
+</table>
