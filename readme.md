@@ -12,12 +12,7 @@ What we propose:
     - Name your Wagtail event: 'Wagtail Space [CityName]'. Eg: 'Wagtail Space Philadelphia'.
     - Notify Four Digits and get a subdomain (philadelphia.wagtail.space)
     - We list your event on [wagtail.space](https://wagtail.space)
-
-To be eligible for a subdomain we require you to:
-
-    - Adhere to the naming scheme
     - Provide hosting yourself (supply an ip address)
-    - Use an SSL-certificate
     - Notify Wagtail Core team of your event plans
 
 
