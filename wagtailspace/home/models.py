@@ -245,7 +245,7 @@ class HomePage(Page):
     ]
 
     def get_context(self, request):
-        context = super(Wagtail2018Page, self).get_context(request)
+        context = super(HomePage, self).get_context(request)
         context['attendees'] = Registration.objects.all()
         context['dates'] = EventDate.objects.all()
         return context
