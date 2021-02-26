@@ -23,6 +23,7 @@ src/
 log/
 stats/
 
+env/
 node_modules/
 wagtailspace/static/
 wagtailspace/settings/local.py
